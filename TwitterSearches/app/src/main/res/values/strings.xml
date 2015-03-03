@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TwitterSearches</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="enterQueryText">Enter Twitter search query here</string>
+    <string name="tagQueryText">Tag your Query</string>
+    <string name="taggedText">Tagged Searches</string>
+    <string name="tagEditText">tagEditText</string>
+
+</resources>

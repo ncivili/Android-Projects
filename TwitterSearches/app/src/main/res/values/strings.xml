@@ -8,5 +8,6 @@
     <string name="tagQueryText">Tag your Query</string>
     <string name="taggedText">Tagged Searches</string>
     <string name="tagEditText">tagEditText</string>
+    <string name="mTextView">mTextView</string>
 
 </resources>

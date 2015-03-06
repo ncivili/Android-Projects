@@ -33,6 +33,7 @@ public class MainActivity extends ListActivity {
 
     private EditText queryEditText; // EditText where user enters a query
     private EditText tagEditText; // EditText where user tags a query
+    private TextView mTextView;
     private SharedPreferences savedSearches; // user's favorite searches
     private ArrayList<String> tags; // list of tags for saved searches
     private ArrayAdapter<String> adapter; // binds tags to ListView
@@ -44,6 +45,7 @@ public class MainActivity extends ListActivity {
         // get references to the EditTexts //TODO
         queryEditText = (EditText) findViewById(R.id.queryEditText);
         tagEditText = (EditText) findViewById(R.id.tagEditText);
+        mTextView = (TextView) findViewById(R.id.mTextView);
 
         // get the SharedPreferences containing the user's saved searches //TODO
         savedSearches = getSharedPreferences(SEARCHES, MODE_PRIVATE);
@@ -124,7 +126,7 @@ public class MainActivity extends ListActivity {
                     mTextView.setText(new String(error.networkResponse.data));
                 }
             });
-// Add the request to the RequestQueue.
+            // Add the request to the RequestQueue.
             queue.add(stringRequest);
 
 

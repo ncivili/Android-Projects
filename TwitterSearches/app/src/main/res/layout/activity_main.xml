@@ -40,12 +40,19 @@
         android:layout_height="fill_parent">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/mTextView"
+            android:id="@+id/mTextView"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/taggedText"
             android:id="@+id/textView"
-            android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:textStyle="bold"
             android:background="#ff6f6f67"

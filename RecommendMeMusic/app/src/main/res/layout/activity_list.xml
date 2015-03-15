@@ -7,31 +7,30 @@
     tools:context="com.android.npcf34.recommendmemusic.ListActivity"
     android:background="#a6030303">
 
-    <LinearLayout
+    <GridLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="113dp"
-        android:weightSum="1"
-        android:id="@+id/linearLayout">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="false"
+        android:columnCount="3"
+        android:rowCount="15">
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="334dp"
-            android:id="@+id/listView" />
+            android:layout_height="381dp"
+            android:id="@+id/artistDisplayView"
+            android:layout_row="0"
+            android:layout_column="0" />
 
         <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="177dp"
-            android:layout_height="65dp"
-            android:text="@string/artistButtonText"
-            android:id="@+id/artistButton"
-            android:layout_gravity="center_horizontal"
-            android:background="#ff7c807b" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/newSearchText"
+            android:id="@+id/backButton"
+            android:layout_row="14"
+            android:layout_column="0" />
 
-    </LinearLayout>
-
+    </GridLayout>
 </RelativeLayout>

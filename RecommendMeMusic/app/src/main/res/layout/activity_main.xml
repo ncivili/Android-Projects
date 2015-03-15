@@ -16,7 +16,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.64">
+        android:layout_weight="0.64"
+        android:layout_gravity="center_horizontal">
 
         <EditText
             android:layout_width="match_parent"
@@ -28,7 +29,7 @@
             android:gravity="center"
             android:hint="@string/artistHint"
             android:textColor="#ff000000"
-            android:textColorHint=""
+            android:textColorHint="#ff000000"
             android:layout_below="@+id/textView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -44,21 +45,69 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="58dp" />
+
     </RelativeLayout>
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="81dp"
-        android:rowCount="4"
-        android:columnCount="29">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="129dp"
+        android:weightSum="1">
 
-    </GridLayout>
+        <TextView
+            android:layout_width="211dp"
+            android:layout_height="0dp"
+            android:text="@string/numResultsText"
+            android:id="@+id/numResultsView"
+            android:textSize="15sp"
+            android:layout_weight=".35"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp" />
 
-    <Button
-        android:layout_width="350dp"
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/numResultsBar"
+            android:paddingBottom="20dp"
+            android:paddingTop="5dp"
+            android:max="24"
+            android:indeterminate="false" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/minResults"
+                android:id="@+id/minResultsText"
+                android:layout_weight="0.05" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/maxResults"
+                android:id="@+id/maxResultsText"
+                android:gravity="right"
+                android:layout_weight="0.12" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/searchButtonText"
-        android:id="@+id/searchButton"
-        android:background="#ff7c807b"
-        android:theme="@android:style/Widget.DeviceDefault.Light.Button" />
+        android:id="@+id/lastFmButton"
+        android:layout_row="2"
+        android:layout_column="0"
+        android:layout_columnSpan="3"
+        android:src="@drawable/lastfm"
+        android:layout_gravity="bottom|center_horizontal"
+        android:contentDescription="@string/viewButtonContent" />
+
 </LinearLayout>

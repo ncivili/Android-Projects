@@ -1,39 +1,44 @@
 package com.android.npcf34.recommendmemusic;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 
 
-public class ListActivity extends ActionBarActivity {
+public class ListActivity extends Activity {
 
+    protected ListView resultsList = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+
+        resultsList = (ListView) findViewById(R.id.artistDisplayView);
+
+        findViewById(R.id.backButton).setOnClickListener(onClickListener);
+        resultsList.setOnLongClickListener(onLongClickListener);
+
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_list, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(ListActivity.this, MainActivity.class);
+            startActivity(intent);
         }
+    };
 
-        return super.onOptionsItemSelected(item);
-    }
+    ListView.OnLongClickListener onLongClickListener = new ListView.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            //TODO: set up intent to take user to last.fm page for artist
+
+            Intent intent = new Intent();
+            startActivity(intent);
+            return true;
+        };
+    };
+
 }

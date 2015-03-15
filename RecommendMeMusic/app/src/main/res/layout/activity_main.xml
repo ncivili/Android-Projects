@@ -15,7 +15,7 @@
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="0.64">
 
         <EditText
@@ -24,10 +24,9 @@
             android:id="@+id/editText"
             android:inputType="text"
             android:background="#ff7d7f7a"
-            android:autoText="false"
             android:theme="@android:style/TextAppearance.Widget.EditText"
             android:gravity="center"
-            android:hint="Enter an Artist Here"
+            android:hint="@string/artistHint"
             android:textColor="#ff000000"
             android:textColorHint=""
             android:layout_below="@+id/textView"
@@ -38,10 +37,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Artist Name"
+            android:text="@string/artistViewText"
             android:id="@+id/textView"
             android:textStyle="bold"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="58dp" />
@@ -53,15 +52,13 @@
         android:rowCount="4"
         android:columnCount="29">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:text="Recommend Me Music"
-            android:id="@+id/searchButton"
-            android:layout_row="3"
-            android:layout_column="3"
-            android:background="#ff7c807b"
-            android:theme="@android:style/Widget.DeviceDefault.Light.Button" />
-
     </GridLayout>
+
+    <Button
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="@string/searchButtonText"
+        android:id="@+id/searchButton"
+        android:background="#ff7c807b"
+        android:theme="@android:style/Widget.DeviceDefault.Light.Button" />
 </LinearLayout>

@@ -5,4 +5,8 @@
     <string name="action_settings">Settings</string>
     <string name="searchButton">New Button</string>
     <string name="title_activity_list">ListActivity</string>
+    <string name="artistButtonText">Display Artist</string>
+    <string name="artistHint">Enter an Artist Here</string>
+    <string name="artistViewText">Artist Name</string>
+    <string name="searchButtonText">Recommend Me Music</string>
 </resources>

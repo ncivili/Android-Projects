@@ -7,12 +7,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.android.npcf34.recommendmemusic.app.AppController;
 import com.android.npcf34.recommendmemusic.util.AppConstants;
-import com.android.npcf34.recommendmemusic.util.Artist;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -23,13 +22,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class MainActivity extends Activity {
 
     protected int numListItems = 1;
     private EditText artistText = null;
-    protected ArrayAdapter<Artist> itemsAdapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,7 @@ public class MainActivity extends Activity {
             String requestString =
                     "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=" +
                     artistName.replace(" ", "+") + "&autocorrect=1&limit=" + numListItems +
-                    "api_key=" + AppConstants.API_KEY + "&format=json";
+                    "&api_key=" + AppConstants.API_KEY + "&format=json";
 
             //TODO search last fm with api web call
             Request request = new JsonObjectRequest(
@@ -64,7 +63,8 @@ public class MainActivity extends Activity {
                                 try {
                                     JSONObject similarArtists = response.getJSONObject("similarartists");
                                     JSONArray artistArray = similarArtists.getJSONArray("artist");
-                                    ArrayList<Artist> artistList = new ArrayList<>();
+                                    ArrayList<String> artistList = new ArrayList<>();
+                                    AppConstants.artistMap = new HashMap<>();
 
                                     for(int i = 0; i < numListItems; i++) {
                                         String artist, lastFmLink;
@@ -72,15 +72,13 @@ public class MainActivity extends Activity {
                                         artist = artistArray.getJSONObject(i).getString("name");
                                         lastFmLink = artistArray.getJSONObject(i).getString("url");
 
-                                        Artist artistEntry = new Artist(artist, lastFmLink);
-                                        artistList.add(artistEntry);
+                                        artistList.add(artist);
+                                        AppConstants.artistMap.put(artist, lastFmLink);
 
                                     }
 
-                                    itemsAdapter = new ArrayAdapter<Artist>(getApplicationContext(),
+                                    AppConstants.itemsAdapter = new ArrayAdapter<>(getApplicationContext(),
                                            android.R.layout.simple_list_item_1, artistList);
-                                    ListView artistListView = (ListView) findViewById(R.id.artistDisplayView);
-                                    artistListView.setAdapter(itemsAdapter);
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -88,9 +86,9 @@ public class MainActivity extends Activity {
                         };
                     }, errorListener
             );
-            //TODO populate top 5 artist matches and store them
 
-            //TODO pass top 5 artists to list
+            //Add request to queue
+            AppController.addRequestToQueue(request);
 
             Intent intent = new Intent(MainActivity.this, ListActivity.class);
             startActivity(intent);

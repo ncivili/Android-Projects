@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
+import com.android.npcf34.recommendmemusic.util.AppConstants;
+
 
 public class ListActivity extends Activity {
 
@@ -17,8 +19,10 @@ public class ListActivity extends Activity {
 
         resultsList = (ListView) findViewById(R.id.artistDisplayView);
 
+        resultsList.setAdapter(AppConstants.itemsAdapter);
         findViewById(R.id.backButton).setOnClickListener(onClickListener);
         resultsList.setOnLongClickListener(onLongClickListener);
+
 
     }
 

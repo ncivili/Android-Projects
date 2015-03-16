@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Nick\Documents\AndroDev\trunk\RecommendMeMusic\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="C:\Users\Nick\Documents\AndroDev\trunk\RecommendMeMusic\app\build\intermediates\pre-dexed\debug\classes-8a1edda359fe35db04388d59ac6e8026b72005d9.jar" />
+    </item>
+    <item
+        jar="C:\Users\Nick\Documents\AndroDev\trunk\RecommendMeMusic\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="C:\Users\Nick\Documents\AndroDev\trunk\RecommendMeMusic\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-2ea7de4c746376dbbd2391a7dac4651358d21704.jar" />
+    </item>
+    <item
+        jar="C:\Users\Nick\Documents\AndroDev\trunk\RecommendMeMusic\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="C:\Users\Nick\Documents\AndroDev\trunk\RecommendMeMusic\app\build\intermediates\pre-dexed\debug\classes-48395fddf9b0dd4fad60eca2a16c2e5bcf23c9ba.jar" />
+    </item>
+    <item
+        jar="C:\Users\Nick\.gradle\caches\modules-2\files-2.1\com.mcxiaoke.volley\library\1.0.10\8d62b91f5ccb6f7f872313191c016c03bb61a792\library-1.0.10.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8d62b91f5ccb6f7f872313191c016c03bb61a792">
+        <dex dex="C:\Users\Nick\Documents\AndroDev\trunk\RecommendMeMusic\app\build\intermediates\pre-dexed\debug\library-1.0.10-d00f77b469d0d83d7013881ab0116f30635f5e1a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Nick\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="C:\Users\Nick\Documents\AndroDev\trunk\RecommendMeMusic\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-6184ca895fcdde414470f35b175582d645391a77.jar" />
+    </item>
+
+</items>

@@ -2,11 +2,13 @@ package com.android.npcf34.recommendmemusic;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.android.npcf34.recommendmemusic.util.AppConstants;
+import com.android.npcf34.recommendmemusic.app.AppController;
 
 
 public class ListActivity extends Activity {
@@ -19,9 +21,11 @@ public class ListActivity extends Activity {
 
         resultsList = (ListView) findViewById(R.id.artistDisplayView);
 
-        resultsList.setAdapter(AppConstants.itemsAdapter);
+        resultsList.setAdapter(AppController.itemsAdapter);
         findViewById(R.id.backButton).setOnClickListener(onClickListener);
-        resultsList.setOnLongClickListener(onLongClickListener);
+        resultsList.setOnItemLongClickListener(onItemLongClickListener);
+        resultsList.setOnItemClickListener(itemClickListener);
+
 
 
     }
@@ -34,15 +38,25 @@ public class ListActivity extends Activity {
         }
     };
 
-    ListView.OnLongClickListener onLongClickListener = new ListView.OnLongClickListener() {
+    ListView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
-        public boolean onLongClick(View v) {
-            //TODO: set up intent to take user to last.fm page for artist
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
 
-            Intent intent = new Intent();
+            String artistKey = parent.getItemAtPosition(position).toString();
+            String lastFmUrl ="http://" + AppController.artistMap.get(artistKey);
+
+            intent.setData(Uri.parse(lastFmUrl));
             startActivity(intent);
-            return true;
-        };
+        }
+    };
+
+    ListView.OnItemLongClickListener onItemLongClickListener = new ListView.OnItemLongClickListener() {
+
+        @Override
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            return false;
+        }
     };
 
 }

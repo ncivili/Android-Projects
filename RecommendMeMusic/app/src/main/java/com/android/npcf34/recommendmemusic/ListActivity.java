@@ -37,6 +37,7 @@ public class ListActivity extends Activity {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            //start a new search by creating and launching an intent to the MainActivity
             Intent intent = new Intent(ListActivity.this, MainActivity.class);
             startActivity(intent);
         }
@@ -45,6 +46,8 @@ public class ListActivity extends Activity {
     ListView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            //create and launch the implicit intent, the last.fm page for the selected artist
+            //using a web browser (or the last.fm app if the user has it installed).
             Intent intent = new Intent(Intent.ACTION_VIEW);
 
             String artistKey = parent.getItemAtPosition(position).toString();
@@ -59,6 +62,7 @@ public class ListActivity extends Activity {
 
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            //save the artist in favorites
             return false;
         }
     };

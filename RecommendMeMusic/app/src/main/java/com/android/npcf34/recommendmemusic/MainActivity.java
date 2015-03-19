@@ -39,33 +39,39 @@ public class MainActivity extends Activity {
         numItemsBar.setOnSeekBarChangeListener(onSeekBarChangeListener);
     }
 
-
+    //Onclick for for Image Button
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            //Get artist text from the EditText field
             String artistName = artistText.getText().toString();
-            //build the JSON request
+            //build the JSON request with the Last.Fm API artist.getsimilar method
             String requestString =
                     "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=" +
                             artistName.replace(" ", "+") + "&autocorrect=1&limit=" +
                             AppController.numListItems +
                             "&api_key=" + AppConstants.API_KEY + "&format=json";
 
-            //search last fm with api web call
+            //prepare the request
             Request request = new JsonObjectRequest(
                     requestString, null,
                     new Response.Listener<JSONObject>() {
 
                         @Override
                         public void onResponse(JSONObject response) {
+                            //Set up the parser for the JSON response from Last.Fm API call
                             JSONParser parser = new JSONParser(response, AppController.numListItems,
                                     getApplicationContext());
+                            //Parse the JSON and get the number of responses
                             int numResponses = parser.parseJSON();
 
+                            //if the number of responses is greater than zero we had a successful API call
                             if(numResponses > 0) {
+                                //Launch the ListActivity intent to display the results
                                 Intent intent = new Intent(MainActivity.this, ListActivity.class);
                                 startActivity(intent);
                             } else {
+                                //If we had a bad API call display an AlertDialog
                                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                                 builder.setMessage("The search returned no results!\n\nYou may have misspelled the " +
                                         "artist's name,\nor your artist may not be in the Last.Fm database.")
@@ -79,6 +85,7 @@ public class MainActivity extends Activity {
 
             //Add request to queue
             AppController.addRequestToQueue(request);
+            //Start the request queue
             AppController.i().getRequestQueue().start();
     }
 
@@ -88,6 +95,7 @@ public class MainActivity extends Activity {
     SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            //when the progress has changed on the SeekBar update the number of results to display
             AppController.numListItems = seekBar.getProgress() + 1;
         }
 
@@ -98,16 +106,20 @@ public class MainActivity extends Activity {
 
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
+            //When user lets go of the SeekBar get the value that they stopped on
             AppController.numListItems = seekBar.getProgress();
+            //Display a toast to let them know what value they've chosen
             Toast.makeText(getApplicationContext(), "Number of Results: " + AppController.numListItems,
                     Toast.LENGTH_SHORT).show();
         }
     };
 
+    //If there's an error with Volley
     Response.ErrorListener errorListener = new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
-            Log.d("Volley Error", error.getLocalizedMessage());
+            //Log the error
+            Log.d("Volley Error", error.getMessage());
         }
     };
 

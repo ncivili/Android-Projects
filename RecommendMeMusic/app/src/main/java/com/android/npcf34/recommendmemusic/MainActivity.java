@@ -21,10 +21,14 @@ import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 
 public class MainActivity extends Activity {
 
     private EditText artistText = null;
+    NumberFormat numberFormat;
 
 
     @Override
@@ -106,10 +110,12 @@ public class MainActivity extends Activity {
 
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
+            numberFormat = new DecimalFormat("###,###,###");
+
             //When user lets go of the SeekBar get the value that they stopped on
             AppController.numListItems = seekBar.getProgress();
             //Display a toast to let them know what value they've chosen
-            Toast.makeText(getApplicationContext(), "Number of Results: " + AppController.numListItems,
+            Toast.makeText(getApplicationContext(), "Number of Results: " + numberFormat.format(AppController.numListItems),
                     Toast.LENGTH_SHORT).show();
         }
     };

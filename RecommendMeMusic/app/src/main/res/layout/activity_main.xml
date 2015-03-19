@@ -10,7 +10,7 @@
     tools:context=".MainActivity"
     android:weightSum="1"
     android:theme="@android:style/Theme.Panel"
-    android:background="#a6030303">
+    android:background="@android:color/background_light">
 
     <RelativeLayout
         android:orientation="vertical"
@@ -24,7 +24,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/editText"
             android:inputType="text"
-            android:background="#ff7d7f7a"
             android:theme="@android:style/TextAppearance.Widget.EditText"
             android:gravity="center"
             android:hint="@string/artistHint"
@@ -33,12 +32,14 @@
             android:layout_below="@+id/textView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="30dp" />
+            android:layout_marginTop="30dp"
+            style="@style/Widget.AppCompat.EditText" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/artistViewText"
+            android:textColor="#ff000000"
             android:id="@+id/textView"
             android:textStyle="bold"
             android:textSize="20sp"
@@ -52,12 +53,14 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="129dp"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_weight="0.04">
 
         <TextView
             android:layout_width="211dp"
             android:layout_height="0dp"
             android:text="@string/numResultsText"
+            android:textColor="#ff000000"
             android:id="@+id/numResultsView"
             android:textSize="15sp"
             android:layout_weight=".35"
@@ -66,12 +69,13 @@
 
         <SeekBar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:id="@+id/numResultsBar"
-            android:paddingBottom="20dp"
+            android:paddingBottom="30dp"
             android:paddingTop="5dp"
             android:max="24"
-            android:indeterminate="false" />
+            android:indeterminate="false"
+            style="@android:style/Widget.Holo.SeekBar" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -83,17 +87,21 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/minResults"
+                android:textColor="#ff000000"
                 android:id="@+id/minResultsText"
-                android:layout_weight="0.05" />
+                android:layout_weight="0.05"
+                android:paddingTop="5dp" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/maxResults"
+                android:textColor="#ff000000"
                 android:id="@+id/maxResultsText"
                 android:gravity="right"
-                android:layout_weight="0.12" />
+                android:layout_weight="0.12"
+                android:paddingTop="5dp" />
 
         </LinearLayout>
 
@@ -108,6 +116,7 @@
         android:layout_columnSpan="3"
         android:src="@drawable/lastfm"
         android:layout_gravity="bottom|center_horizontal"
-        android:contentDescription="@string/viewButtonContent" />
+        android:contentDescription="@string/viewButtonContent"
+        style="@android:style/MediaButton" />
 
 </LinearLayout>

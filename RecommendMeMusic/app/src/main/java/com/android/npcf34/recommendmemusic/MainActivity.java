@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -24,8 +25,7 @@ import org.json.JSONObject;
 public class MainActivity extends Activity {
 
     private EditText artistText = null;
-    private boolean gotResponse = false;
-    private boolean requestComplete = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +60,19 @@ public class MainActivity extends Activity {
                         public void onResponse(JSONObject response) {
                             JSONParser parser = new JSONParser(response, AppController.numListItems,
                                     getApplicationContext());
-                            parser.parseJSON();
-                            gotResponse = true;
+                            int numResponses = parser.parseJSON();
+
+                            if(numResponses > 0) {
+                                Intent intent = new Intent(MainActivity.this, ListActivity.class);
+                                startActivity(intent);
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                builder.setMessage("The search returned no results!\n\nYou may have misspelled the " +
+                                        "artist's name,\nor your artist may not be in the Last.Fm database.")
+                                        .setTitle("Oops!");
+                                AlertDialog dialog = builder.create();
+                                dialog.show();
+                            }
                         }
                     }, errorListener
             );
@@ -69,18 +80,6 @@ public class MainActivity extends Activity {
             //Add request to queue
             AppController.addRequestToQueue(request);
             AppController.i().getRequestQueue().start();
-
-            if (gotResponse) {
-                Intent intent = new Intent(MainActivity.this, ListActivity.class);
-                startActivity(intent);
-            } else {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setMessage("The search returned no results!\n\nYou may have misspelled the " +
-                        "artist's name,\nor your artist may not be in the Last.Fm database.")
-                        .setTitle("Oops!");
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
     }
 
     };
@@ -94,7 +93,7 @@ public class MainActivity extends Activity {
 
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
-            //TODO: Auto generated method stub
+            //Do Nothing
         }
 
         @Override
@@ -108,7 +107,7 @@ public class MainActivity extends Activity {
     Response.ErrorListener errorListener = new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
-
+            Log.d("Volley Error", error.getLocalizedMessage());
         }
     };
 

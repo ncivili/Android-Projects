@@ -16,4 +16,5 @@
     <string name="maxResults">25</string>
     <string name="minResults">1</string>
     <string name="newSearchText">New Search</string>
+    <string name="smilarText">Similar Artists For Artist</string>
 </resources>

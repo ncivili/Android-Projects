@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.npcf34.recommendmemusic.app.AppController;
 
@@ -18,6 +19,9 @@ public class ListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+
+        TextView artistText = (TextView) findViewById(R.id.artistSearchedForText);
+        artistText.setText(AppController.artist);
 
         resultsList = (ListView) findViewById(R.id.artistDisplayView);
 

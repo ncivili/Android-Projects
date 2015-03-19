@@ -18,6 +18,7 @@ public class AppController extends Application {
     public static ArrayAdapter<String> itemsAdapter = null;
     public static HashMap<String, String> artistMap = null;
     public static int numListItems = 0;
+    public static String artist;
 
     @Override
     public void onCreate() {

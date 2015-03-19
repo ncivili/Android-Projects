@@ -26,28 +26,36 @@ public class JSONParser {
         this.context = context;
     }
 
-    public void parseJSON() {
+    public int parseJSON() {
         try {
             JSONObject similarArtists = response.getJSONObject("similarartists");
             JSONArray artistArray = similarArtists.getJSONArray("artist");
+            AppController.artist = similarArtists.getJSONObject("@attr").getString("artist");
+            int numResponses = similarArtists.length();
+
             ArrayList<String> artistList = new ArrayList<>();
             AppController.artistMap = new HashMap<>();
 
-            for (int i = 0; i < numListItems; i++) {
-                String artist, lastFmLink;
+            if(numResponses > 0) {
+                for (int i = 0; i < numListItems; i++) {
+                    String artist, lastFmLink;
 
-                artist = artistArray.getJSONObject(i).getString("name");
-                lastFmLink = artistArray.getJSONObject(i).getString("url");
+                    artist = artistArray.getJSONObject(i).getString("name");
+                    lastFmLink = artistArray.getJSONObject(i).getString("url");
 
-                artistList.add(artist);
-                AppController.artistMap.put(artist, lastFmLink);
+                    artistList.add(artist);
+                    AppController.artistMap.put(artist, lastFmLink);
+                }
+
+                AppController.itemsAdapter = new ArrayAdapter<>(context,
+                        android.R.layout.simple_list_item_1, artistList);
+                AppController.itemsAdapter.notifyDataSetChanged();
             }
 
-            AppController.itemsAdapter = new ArrayAdapter<>(context,
-                    android.R.layout.simple_list_item_1, artistList);
-            AppController.itemsAdapter.notifyDataSetChanged();
+            return numResponses;
         } catch (JSONException e) {
             e.printStackTrace();
+            return 0;
         }
     }
 }

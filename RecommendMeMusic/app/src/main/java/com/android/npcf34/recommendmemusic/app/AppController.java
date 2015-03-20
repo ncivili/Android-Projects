@@ -16,7 +16,9 @@ public class AppController extends Application {
     private static AppController instance;
     private static RequestQueue requestQueue;
     public static ArrayAdapter<String> itemsAdapter = null;
+    public static ArrayAdapter<String> savedItemsAdapter = null;
     public static HashMap<String, String> artistMap = null;
+    public static HashMap<String, String> savedArtistMap = null;
     public static int numListItems = 0;
     public static String artist;
 

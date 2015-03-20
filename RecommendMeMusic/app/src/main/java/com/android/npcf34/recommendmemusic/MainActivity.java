@@ -2,13 +2,17 @@ package com.android.npcf34.recommendmemusic;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.npcf34.recommendmemusic.app.AppController;
@@ -23,6 +27,8 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class MainActivity extends Activity {
@@ -38,9 +44,11 @@ public class MainActivity extends Activity {
         ImageButton searchButton = (ImageButton) findViewById(R.id.lastFmButton);
         SeekBar numItemsBar = (SeekBar) findViewById(R.id.numResultsBar);
         artistText = (EditText) findViewById(R.id.editText);
+        TextView savedText = (TextView) findViewById(R.id.savedSearchesButton);
 
         searchButton.setOnClickListener(onClickListener);
         numItemsBar.setOnSeekBarChangeListener(onSeekBarChangeListener);
+        savedText.setOnClickListener(savedSearchesListener);
     }
 
     //Onclick for for Image Button
@@ -117,6 +125,33 @@ public class MainActivity extends Activity {
             //Display a toast to let them know what value they've chosen
             Toast.makeText(getApplicationContext(), "Number of Results: " + numberFormat.format(AppController.numListItems),
                     Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    View.OnClickListener savedSearchesListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            //set adapter for Saved Artist List View
+            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.pref_file_key), Context.MODE_PRIVATE);
+            ArrayList<String> savedList = new ArrayList<>();
+            AppController.savedArtistMap = new HashMap<>();
+
+            //get all of the saved artists from the shared preferences
+            AppController.savedArtistMap =  (HashMap<String, String>) sharedPreferences.getAll();
+
+            //get all the keys from the shared preferences and add them to the array list
+            for(String key: AppController.savedArtistMap.keySet()) {
+                savedList.add(key);
+            }
+
+            //add the list of saved keys to the adapter
+            AppController.savedItemsAdapter = new ArrayAdapter<>(getApplicationContext(),
+                    android.R.layout.simple_list_item_1, savedList);
+            AppController.savedItemsAdapter.notifyDataSetChanged();
+
+            //launch saved artists activity
+            Intent intent = new Intent(MainActivity.this, SavedArtistsActivity.class);
+            startActivity(intent);
         }
     };
 

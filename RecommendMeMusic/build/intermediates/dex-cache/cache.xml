@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Nick\Documents\Android-Projects\RecommendMeMusic\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="C:\Users\Nick\Documents\Android-Projects\RecommendMeMusic\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-7e39ddff9d3af49131171cf818f031b575f07812.jar" />
-    </item>
-    <item
-        jar="C:\Users\Nick\Documents\Android-Projects\RecommendMeMusic\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="C:\Users\Nick\Documents\Android-Projects\RecommendMeMusic\app\build\intermediates\pre-dexed\debug\classes-7ecebc7957f53f4b776050fde5da1f06b1dfcce6.jar" />
-    </item>
-    <item
-        jar="C:\Users\Nick\.gradle\caches\modules-2\files-2.1\com.mcxiaoke.volley\library\1.0.10\8d62b91f5ccb6f7f872313191c016c03bb61a792\library-1.0.10.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="8d62b91f5ccb6f7f872313191c016c03bb61a792">
-        <dex dex="C:\Users\Nick\Documents\Android-Projects\RecommendMeMusic\app\build\intermediates\pre-dexed\debug\library-1.0.10-d00f77b469d0d83d7013881ab0116f30635f5e1a.jar" />
-    </item>
-    <item
-        jar="C:\Users\Nick\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jar="/Users/user/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="C:\Users\Nick\Documents\Android-Projects\RecommendMeMusic\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-6184ca895fcdde414470f35b175582d645391a77.jar" />
+        <dex dex="/Users/user/Android-Projects/RecommendMeMusic/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-13d5e7e06a03f397bb5c6295e982dc9246989670.jar" />
     </item>
     <item
-        jar="C:\Users\Nick\Documents\Android-Projects\RecommendMeMusic\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jar="/Users/user/Android-Projects/RecommendMeMusic/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="/Users/user/Android-Projects/RecommendMeMusic/app/build/intermediates/pre-dexed/debug/classes-7aa33949ad8b401d2fbc60fa1d47d8c0e96a19f0.jar" />
+    </item>
+    <item
+        jar="/Users/user/Android-Projects/RecommendMeMusic/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="/Users/user/Android-Projects/RecommendMeMusic/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-795dc858b245034910bd0be748be3d75cff2487c.jar" />
+    </item>
+    <item
+        jar="/Users/user/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.10/8d62b91f5ccb6f7f872313191c016c03bb61a792/library-1.0.10.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8d62b91f5ccb6f7f872313191c016c03bb61a792">
+        <dex dex="/Users/user/Android-Projects/RecommendMeMusic/app/build/intermediates/pre-dexed/debug/library-1.0.10-514f236e6959717f1636b146c9e5f0bd90913977.jar" />
+    </item>
+    <item
+        jar="/Users/user/Android-Projects/RecommendMeMusic/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="C:\Users\Nick\Documents\Android-Projects\RecommendMeMusic\app\build\intermediates\pre-dexed\debug\classes-1b681a478fd81221b6857a18f89f207d076c2fba.jar" />
+        <dex dex="/Users/user/Android-Projects/RecommendMeMusic/app/build/intermediates/pre-dexed/debug/classes-533126beef9ae6a2b9d72b6d5e2313dabbcbbd21.jar" />
     </item>
 
 </items>

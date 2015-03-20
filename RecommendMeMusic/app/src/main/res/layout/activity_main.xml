@@ -119,4 +119,14 @@
         android:contentDescription="@string/viewButtonContent"
         style="@android:style/MediaButton" />
 
+    <TextView
+        android:layout_width="143dp"
+        android:layout_height="46dp"
+        android:text="@string/savedSearchesText"
+        android:id="@+id/savedSearchesButton"
+        android:gravity="center"
+        android:layout_weight="0.04"
+        android:layout_gravity="center_horizontal"
+        android:background="#ff00ffc2" />
+
 </LinearLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <declare-styleable name="AboutView">
+        <attr name="exampleStrings" format="string" />
+        <attr name="exampleColors" format="color" />
+        <attr name="exampleDrawables" format="color|reference" />
+    </declare-styleable>
+</resources>

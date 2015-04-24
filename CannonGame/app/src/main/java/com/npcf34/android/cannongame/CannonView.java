@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -22,6 +23,7 @@ import android.view.SurfaceView;
 
 import com.npcf34.android.cannongame.Classes.Cannonball;
 import com.npcf34.android.cannongame.Classes.Line;
+import com.npcf34.android.cannongame.Util.DatabaseConnector;
 
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
@@ -33,6 +35,7 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
     public static final int HIT_REWARD = 3; // seconds added on a hit
     public static int MAX_BALLS = 3;
     public static boolean STARTED = false;
+    public static boolean ROTATED = false;
     private static final String TAG = "CannonView"; // for logging errors
     // constants and variables for managing sounds
     private static final int TARGET_SOUND_ID = 0;
@@ -47,6 +50,7 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
     private boolean gameOver; // is the game over?
     private double timeLeft; // time remaining in seconds
     private int shotsFired; // shots the user has fired
+    private double score;
     // variables for the blocker and target
     private Line blocker; // start and end points of the blocker
     private int blockerDistance; // blocker distance from left
@@ -169,6 +173,9 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
 
         if(!STARTED) {
             newGame(); // set up and start a new game
+        }else {
+            ROTATED = true;
+            //keep game the same but rotate text
         }
     } // end method onSizeChanged
 
@@ -470,6 +477,8 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
 
     // stops the game; called by CannonGameFragment's onPause method
     public void stopGame() {
+        score = (double)(targetPiecesHit/shotsFired);
+        saveScore();
         if (cannonThread != null)
             cannonThread.setRunning(false); // tell thread to terminate
     }
@@ -484,6 +493,7 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format,
                                int width, int height) {
+
 
     }
 
@@ -527,5 +537,27 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
 
         return true;
     } // end method onTouchEvent
+
+    public long saveScore() {
+
+        long rowID = 9999;
+        DatabaseConnector databaseConnector = new DatabaseConnector(getContext());
+        Cursor scoreCursor = databaseConnector.getAllScores();
+
+        if(scoreCursor.getCount() < 3) {
+            //add score to database
+            rowID = databaseConnector.insertScore(score);
+        } else {
+            for (int i = 0; i < scoreCursor.getCount(); i++) {
+                if (score > scoreCursor.getDouble(i)) {
+                    databaseConnector.updateScore(i, score);
+                    break;
+                }
+            }
+        }
+
+        return rowID;
+
+    }
 
 } // end class CannonView

@@ -36,6 +36,8 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
     public static int MAX_BALLS = 3;
     public static boolean STARTED = false;
     public static boolean ROTATED = false;
+    public static int LEVEL = 1;
+    public static int MAX_LEVEL = 3;
     private static final String TAG = "CannonView"; // for logging errors
     // constants and variables for managing sounds
     private static final int TARGET_SOUND_ID = 0;
@@ -270,6 +272,11 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
                             cannonThread.setRunning(false); // terminate thread
                             showGameOverDialog(R.string.win); // show winning dialog
                             gameOver = true;
+                            if(LEVEL < 3) {
+                                LEVEL++;
+                            } else {
+                                LEVEL = 1;
+                            }
                         }
                     }
                 }
@@ -321,8 +328,8 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
 
             Cannonball cannonball = new Cannonball();
 
-            cannonball.cannonballRadius = cannonballRadius;
-            cannonball.cannonballSpeed = cannonballSpeed;
+            cannonball.cannonballRadius = cannonballRadius * LEVEL;
+            cannonball.cannonballSpeed = cannonballSpeed * LEVEL;
 
             double angle = alignCannon(event); // get the cannon barrel's angle
 
@@ -331,10 +338,10 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
             cannonball.y = screenHeight / 2; // centers ball vertically
 
             // get the x component of the total velocity
-            cannonball.cannonballVelocityX = (int) (cannonballSpeed * Math.sin(angle));
+            cannonball.cannonballVelocityX = (int) (cannonballSpeed * Math.sin(angle)) * LEVEL;
 
             // get the y component of the total velocity
-            cannonball.cannonballVelocityY = (int) (-cannonballSpeed * Math.cos(angle));
+            cannonball.cannonballVelocityY = (int) (-cannonballSpeed * Math.cos(angle)) * LEVEL;
             cannonball.cannonballOnScreen = true; // the cannonball is on the screen
             ++shotsFired; // increment shotsFired
 
@@ -384,6 +391,8 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
 
         canvas.drawText(getResources().getString(
                 R.string.max_balls, MAX_BALLS), 30, 130, textPaint);
+
+        canvas.drawText(getResources().getString(R.string.curr_level, LEVEL, LEVEL), 30, 180, textPaint);
 
         // if a cannonball is currently on the screen, draw it
 
@@ -477,7 +486,9 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
 
     // stops the game; called by CannonGameFragment's onPause method
     public void stopGame() {
-        score = (double)(targetPiecesHit/shotsFired);
+        if(shotsFired != 0) {
+            score = (double)(targetPiecesHit/shotsFired);
+        }
         saveScore();
         if (cannonThread != null)
             cannonThread.setRunning(false); // tell thread to terminate
@@ -542,20 +553,22 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
 
         long rowID = 9999;
         DatabaseConnector databaseConnector = new DatabaseConnector(getContext());
-        Cursor scoreCursor = databaseConnector.getAllScores();
+        databaseConnector.open();
+        Cursor scoreCursor = databaseConnector.getScoresByLevel(LEVEL);
 
         if(scoreCursor.getCount() < 3) {
             //add score to database
-            rowID = databaseConnector.insertScore(score);
+            rowID = databaseConnector.insertScore(score, LEVEL);
         } else {
             for (int i = 0; i < scoreCursor.getCount(); i++) {
-                if (score > scoreCursor.getDouble(i)) {
-                    databaseConnector.updateScore(i, score);
+                if (score > scoreCursor.getDouble(i) && LEVEL == scoreCursor.getInt(i)) {
+                    databaseConnector.updateScore(i, score, LEVEL);
                     break;
                 }
             }
         }
 
+        databaseConnector.close();
         return rowID;
 
     }

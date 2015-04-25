@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="/Users/user/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="/Users/user/Android-Projects/CannonGame/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-13d5e7e06a03f397bb5c6295e982dc9246989670.jar" />
-    </item>
-    <item
-        jar="/Users/user/Android-Projects/CannonGame/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="/Users/user/Android-Projects/CannonGame/app/build/intermediates/pre-dexed/debug/classes-6fcd06bab7eca639e54c8a85ea8b9ab98612a938.jar" />
-    </item>
-    <item
-        jar="/Users/user/Android-Projects/CannonGame/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="/Users/user/Android-Projects/CannonGame/app/build/intermediates/pre-dexed/debug/classes-23f4aec5f9448b654b097c0225c588f6618fca85.jar" />
-    </item>
-    <item
-        jar="/Users/user/Android-Projects/CannonGame/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jar="C:\Users\Nick\Documents\Android-Projects\CannonGame\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="/Users/user/Android-Projects/CannonGame/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-8f535943662ea6b8156c59e1b46c44651e0aa624.jar" />
+        <dex dex="C:\Users\Nick\Documents\Android-Projects\CannonGame\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-40fa27f49212f7e6ab2a3916b38308ff5233877c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Nick\Documents\Android-Projects\CannonGame\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="C:\Users\Nick\Documents\Android-Projects\CannonGame\app\build\intermediates\pre-dexed\debug\classes-27000e3f36d52fe099cfeb95352f2566aec5e912.jar" />
+    </item>
+    <item
+        jar="C:\Users\Nick\Documents\Android-Projects\CannonGame\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="C:\Users\Nick\Documents\Android-Projects\CannonGame\app\build\intermediates\pre-dexed\debug\classes-285aa0818aa0259417c9c6823a228622a74d80d8.jar" />
+    </item>
+    <item
+        jar="C:\Users\Nick\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="C:\Users\Nick\Documents\Android-Projects\CannonGame\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-6184ca895fcdde414470f35b175582d645391a77.jar" />
     </item>
 
 </items>

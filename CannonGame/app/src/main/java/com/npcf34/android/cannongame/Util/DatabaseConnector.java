@@ -41,10 +41,11 @@ public class DatabaseConnector {
     }
 
     // inserts a new score into the database
-    public long insertScore(double score)
+    public long insertScore(double score, int level)
     {
         ContentValues newScore = new ContentValues();
         newScore.put("score", score);
+        newScore.put("level", level);
 
         open(); // open the database
         long rowID = database.insert("scores", null, newScore);
@@ -53,28 +54,34 @@ public class DatabaseConnector {
     }
 
     // updates an existing contact in the database
-    public void updateScore(long id, double score)
+    public void updateScore(long id, double score, int level)
     {
         ContentValues editScore = new ContentValues();
         editScore.put("score", score);
+        editScore.put("level", level);
 
         open(); // open the database
-        database.update("contacts", editScore, "_id=" + id, null);
+        database.update("scores", editScore, "_id=" + id, null);
         close(); // close the database
     } // end method updateScore
 
     // return a Cursor with all contact names in the database
     public Cursor getAllScores()
     {
-        return database.query("scores", new String[] {"_id", "score"}, null, null,
+        return database.query("scores", new String[] {"score", "level"}, null, null,
+                null, null, "score");
+    }
+
+    public Cursor getScoresByLevel(int level) {
+        return database.query("scores", null, "level=" + level, null,
                 null, null, "score");
     }
 
     // delete the contact specified by the given String name
-    public void deleteScores(long id)
+    public void deleteScores()
     {
         open(); // open the database
-        database.delete("contacts", null, null);
+        database.delete("scores", null, null);
         close(); // close the database
     }
 
@@ -94,7 +101,7 @@ public class DatabaseConnector {
             // query to create a new table named scores
             String createQuery = "CREATE TABLE scores" +
                     "(_id integer primary key autoincrement," +
-                    "score REAL);";
+                    "score REAL," + " level INTEGER);";
 
             db.execSQL(createQuery); // execute query to create the database
         }

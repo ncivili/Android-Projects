@@ -52,7 +52,6 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
     private boolean gameOver; // is the game over?
     private double timeLeft; // time remaining in seconds
     private int shotsFired; // shots the user has fired
-    private double score;
     // variables for the blocker and target
     private Line blocker; // start and end points of the blocker
     private int blockerDistance; // blocker distance from left
@@ -269,8 +268,14 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
 
                         // if all pieces have been hit
                         if (++targetPiecesHit == TARGET_PIECES) {
+                            if(shotsFired != 0) {
+                               double score = ((double)targetPiecesHit/(double)shotsFired)*100;
+                                saveScore(score, LEVEL);
+                            }
+
                             cannonThread.setRunning(false); // terminate thread
                             showGameOverDialog(R.string.win); // show winning dialog
+
                             gameOver = true;
                             if(LEVEL < 3) {
                                 LEVEL++;
@@ -392,7 +397,7 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
         canvas.drawText(getResources().getString(
                 R.string.max_balls, MAX_BALLS), 30, 130, textPaint);
 
-        canvas.drawText(getResources().getString(R.string.curr_level, LEVEL, LEVEL), 30, 180, textPaint);
+        canvas.drawText(getResources().getString(R.string.curr_level, LEVEL, LEVEL), 30, 200, textPaint);
 
         // if a cannonball is currently on the screen, draw it
 
@@ -486,10 +491,6 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
 
     // stops the game; called by CannonGameFragment's onPause method
     public void stopGame() {
-        if(shotsFired != 0) {
-            score = (double)(targetPiecesHit/shotsFired);
-        }
-        saveScore();
         if (cannonThread != null)
             cannonThread.setRunning(false); // tell thread to terminate
     }
@@ -549,22 +550,25 @@ public class CannonView extends SurfaceView implements SurfaceHolder.Callback {
         return true;
     } // end method onTouchEvent
 
-    public long saveScore() {
+    public long saveScore(double myScore, int level) {
 
         long rowID = 9999;
         DatabaseConnector databaseConnector = new DatabaseConnector(getContext());
         databaseConnector.open();
-        Cursor scoreCursor = databaseConnector.getScoresByLevel(LEVEL);
+        Cursor scoreCursor = databaseConnector.getScoresByLevel(level);
+        scoreCursor.moveToFirst();
 
         if(scoreCursor.getCount() < 3) {
             //add score to database
-            rowID = databaseConnector.insertScore(score, LEVEL);
+            rowID = databaseConnector.insertScore(myScore, level);
         } else {
             for (int i = 0; i < scoreCursor.getCount(); i++) {
-                if (score > scoreCursor.getDouble(i) && LEVEL == scoreCursor.getInt(i)) {
-                    databaseConnector.updateScore(i, score, LEVEL);
+                if (myScore > Double.parseDouble(scoreCursor.getString(scoreCursor.getColumnIndex("score")))
+                        && level == Integer.parseInt(scoreCursor.getString(scoreCursor.getColumnIndex("level")))) {
+                    databaseConnector.updateScore(i, myScore, level);
                     break;
                 }
+                scoreCursor.moveToNext();
             }
         }
 

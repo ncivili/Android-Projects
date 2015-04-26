@@ -57,8 +57,8 @@ public class DatabaseConnector {
     public void updateScore(long id, double score, int level)
     {
         ContentValues editScore = new ContentValues();
-        editScore.put("score", score);
-        editScore.put("level", level);
+        editScore.put("score", Double.toString(score));
+        editScore.put("level", Integer.toString(level));
 
         open(); // open the database
         database.update("scores", editScore, "_id=" + id, null);
@@ -101,7 +101,7 @@ public class DatabaseConnector {
             // query to create a new table named scores
             String createQuery = "CREATE TABLE scores" +
                     "(_id integer primary key autoincrement," +
-                    "score REAL," + " level INTEGER);";
+                    "score TEXT," + " level TEXT);";
 
             db.execSQL(createQuery); // execute query to create the database
         }
